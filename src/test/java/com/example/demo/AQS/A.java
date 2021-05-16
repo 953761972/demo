@@ -16,6 +16,7 @@ public class A {
     public   void  increase(){
 
 
+
         try{
             l.lock();
             num++;
