@@ -83,6 +83,26 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.msgpack/msgpack-core -->
+        <dependency>
+            <groupId>org.msgpack</groupId>
+            <artifactId>msgpack-core</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.msgpack/msgpack -->
+        <dependency>
+            <groupId>org.msgpack</groupId>
+            <artifactId>msgpack</artifactId>
+            <version>0.6.12</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>3.17.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>

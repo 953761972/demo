@@ -1,7 +1,6 @@
-package com.example.demo.netty.netty.test1;
+package com.example.demo.netty.netty.test2;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
@@ -14,24 +13,23 @@ import java.net.InetSocketAddress;
 /**
  * @Author XZQ
  * @Date 2021/6/14 10:22
- * 第一个netty实例
+ * timeServer模拟粘包拆包
  **/
-public class EchoServer {
+public class TimeServer {
     private final int port;
 
-    public EchoServer(int port) {
+    public TimeServer(int port) {
         this.port = port;
     }
 
     public static void main(String[] args) throws InterruptedException {
             int port=8080;
-            new EchoServer(port).start();
+            new TimeServer(port).start();
             System.out.println("Server started on "+port);
 
     }
 
     private void start() throws InterruptedException {
-        final EchoServerHandler serverHandler=new EchoServerHandler();
         EventLoopGroup group=new NioEventLoopGroup();
         ServerBootstrap b=new ServerBootstrap();
         b.group(group)
@@ -41,7 +39,7 @@ public class EchoServer {
 
             @Override
             protected void initChannel(SocketChannel socketChannel) throws Exception {
-                socketChannel.pipeline().addLast(serverHandler);
+                socketChannel.pipeline().addLast(new TimeServerHandler());
             }
         });
         try {

@@ -1,4 +1,4 @@
-package com.example.demo.netty.netty.test1;
+package com.example.demo.netty.netty.test2;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -13,19 +13,19 @@ import java.net.InetSocketAddress;
 /**
  * @Author XZQ
  * @Date 2021/6/14 10:41
- * 第一个netty实例
+ * timeServer模拟粘包拆包
  **/
-public class EchoClient {
+public class TimeClient {
     private  final String host;
     private final int port;
 
-    public EchoClient(String host, int port) {
+    public TimeClient(String host, int port) {
         this.host = host;
         this.port = port;
     }
 
     public static void main(String[] args) throws InterruptedException {
-        new EchoClient("127.0.0.1",8080).start();
+        new TimeClient("127.0.0.1",8080).start();
     }
 
     private void start() throws InterruptedException {
@@ -37,7 +37,7 @@ public class EchoClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
-                        ch.pipeline().addLast(new EchoClientHandler());
+                        ch.pipeline().addLast(new TimeClientHandler());
                     }
                 });
         try{
