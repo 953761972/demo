@@ -1,11 +1,7 @@
 package com.example.demo.公司面试;
 
-import io.lettuce.core.StrAlgoArgs;
 import org.junit.jupiter.api.Test;
-import sun.net.www.http.HttpClient;
-
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Random;

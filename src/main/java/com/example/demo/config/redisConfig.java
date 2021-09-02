@@ -24,7 +24,7 @@ public class redisConfig {
     @Bean
     public JedisPool JedisPool(){
         JedisPoolConfig config=new JedisPoolConfig();
-        return new JedisPool(config,"192.168.50.208",6379,1000,"Admin");
+        return new JedisPool(config,"localhost",6379,1000);
     }
 
 
