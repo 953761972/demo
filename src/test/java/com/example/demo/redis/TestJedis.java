@@ -17,6 +17,8 @@ public class TestJedis {
         System.out.println("服务正在运行: "+jedis.ping());
         System.out.println("set: "+jedis.set("111","333"));
         System.out.println("get: "+jedis.get("111"));
+        System.out.println("set: "+jedis.set("111","444"));
+        System.out.println("get: "+jedis.get("111"));
         jedis.expire("111",1000);
         //client.expire("111",5000);
 
