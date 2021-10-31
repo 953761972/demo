@@ -31,6 +31,7 @@ public class GPResponse {
                     HttpResponseStatus.OK,
                     Unpooled.wrappedBuffer(out.getBytes("UTF-8")));
             response.headers().set("Content-Type","text/html");
+            response.headers().set("aaa","vvv");
             ctx.write(response);
         }finally {
             ctx.flush();

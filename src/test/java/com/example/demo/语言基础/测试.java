@@ -1,6 +1,9 @@
 package com.example.demo.语言基础;
 
+import org.junit.Test;
+
 import java.io.*;
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.zip.GZIPOutputStream;
 
@@ -31,5 +34,10 @@ public class 测试 {
             //k = k + 1;
              I--;
              }
-         }
+    }
+    @Test
+    public void testManager(){
+    //测试PID
+    System.out.println(ManagementFactory.getRuntimeMXBean().getName());
+    }
 }

@@ -53,10 +53,12 @@ public class 集合测试 {
         l.add(1);
         l.add(8);
         l.add(4);
+        l.add(2,9);
         l.forEach(a-> System.out.println(a));
         l2.add(1);
         l2.add(8);
         l2.add(4);
+        l2.add(2,9);
         l2.forEach(a-> System.out.println(a));
 
     }
@@ -66,8 +68,14 @@ public class 集合测试 {
     public void mainTest(){
         int key=1;
         Map<Integer,List<Integer>> map=new HashMap<>();
-        map.computeIfAbsent(key,v->new ArrayList<>()).add(1);
-        map.computeIfAbsent(key,v->new ArrayList<>()).add(1);
+        map.computeIfAbsent(key,v->new ArrayList<>()).add(1);//不存在则创建
+        map.computeIfAbsent(key,v->new ArrayList<>()).add(1);//存在则返回
+        map.computeIfAbsent(key, new Function<Integer, List<Integer>>() {
+            @Override
+            public List<Integer> apply(Integer integer) {
+                return new ArrayList<>();
+            }
+        }).add(2);
         System.out.println(map.get(key));
         map.get(key).add(1);
         System.out.println(map.get(key));
@@ -76,7 +84,7 @@ public class 集合测试 {
     //ArrayList的remove
     public void testArrayList(){
         List<Integer> list=new ArrayList<>();
-        for(int i=0;i<4;i++){
+        for(int i=0;i<6;i++){
             list.add(i);
         }
         System.out.println(list);
@@ -119,6 +127,7 @@ public class 集合测试 {
                 return;}
             System.out.println(a);
         });
+        System.out.println("");
         l.forEach(a-> {
             if (a==1){
                 return;

@@ -1,6 +1,7 @@
 package com.example.demo.动态代理;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 
 /**
@@ -15,24 +16,35 @@ public class Aspectj代理 {
     public void test() {
 
     }
-    @Before(value = "test()")//前面植入
-    public void doBeforeTask2(JoinPoint point) {
-        //方法调用前植入
-        System.out.println("=========BEFORE=========");
-    }
+//    @Before(value = "test()")//前面植入
+//    public void doBeforeTask2( ) {
+//        //方法调用前植入
+//        System.out.println("=========BEFORE=========");
+//    }
 
-    @After("test()")//后面植入
-    public void after(JoinPoint point) {
-        //方法调用后植入
-        System.out.println("===========AFTER=======");
-    }
+//    @After("test()")//后面植入
+//    public void after( ) {
+//        //方法调用后植入
+//        System.out.println("===========AFTER=======");
+//    }
     @AfterThrowing("test()")
-    public void afterthrowing(JoinPoint point) {
+    public void afterthrowing( ) {
         System.out.println("===========throwing=======");
     }
     @AfterReturning("test()")
-    public void afterRutuen(JoinPoint point) {
+    public void afterRutuen( ) {
         System.out.println("===========return=======");
+    }
+
+    @Around("test()")
+    public void around(ProceedingJoinPoint pj) throws Throwable {
+        System.out.println("around");
+        try{
+            pj.proceed();
+        }catch (Throwable e){
+            System.out.println(e.getClass());
+        }
+        System.out.println("ariund");
     }
 }
 

@@ -19,6 +19,7 @@ public class GPResponse {
         StringBuilder sb=new StringBuilder();
         sb.append("HTTP/1.1 200 ok\n")
                 .append("Content-Type:text/html;\n")
+                .append("aaa:bbb;\n")
                 .append("\r\n")
                 .append(s);
         out.write(sb.toString().getBytes(StandardCharsets.UTF_8));

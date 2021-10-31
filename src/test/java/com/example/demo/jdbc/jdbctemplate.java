@@ -1,5 +1,6 @@
 package com.example.demo.jdbc;
 
+import com.example.demo.bean.log;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +48,21 @@ public class jdbctemplate {
         JdbcTemplate jdbcTemplate = applicationContext.getBean(JdbcTemplate.class);
         Connection conn = jdbcTemplate.getDataSource().getConnection();
         conn.setAutoCommit(false);
-        List<?> resultList = jdbcTemplate.queryForList("select * from HR.employees where rownum <10");
         System.out.println("===>>>>>>>>>>>");
-        resultList.forEach(a-> System.out.println(a));
+        StringBuilder sql=null;
+        for(int i=0;i<1000000;i++){
+            sql=new StringBuilder();
+            sql.append("insert into log(age,name) values(");
+            sql.append("'");
+            sql.append(i);
+            sql.append("'");
+            sql.append(",");
+            sql.append("'");
+            sql.append("姓名"+i);
+            sql.append("'");
+            sql.append(")");
+            jdbcTemplate.execute(sql.toString());
+        }
+        conn.commit();
     }
 }
