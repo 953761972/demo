@@ -1,4 +1,4 @@
-package com.xzq.dubbodemo.bean;
+package com.xzq.dubbocommon.bean;
 
 import org.springframework.stereotype.Component;
 

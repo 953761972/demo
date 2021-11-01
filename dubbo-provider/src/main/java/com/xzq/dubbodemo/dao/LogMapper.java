@@ -1,7 +1,8 @@
-package com.xzq.dubbodemo.repository;
+package com.xzq.dubbodemo.dao;
 
-import com.xzq.dubbodemo.Log;
+import com.xzq.dubbocommon.bean.Log;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * @Author XZQ
@@ -10,6 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
 **/
     
 @Mapper
+@Repository
 public interface LogMapper {
     int deleteByPrimaryKey(Integer logid);
 

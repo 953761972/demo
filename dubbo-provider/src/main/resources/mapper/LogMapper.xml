@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xzq.dubbodemo.LogMapper">
-  <resultMap id="BaseResultMap" type="com.xzq.dubbodemo.Log">
+<mapper namespace="com.xzq.dubbodemo.dao.LogMapper">
+  <resultMap id="BaseResultMap" type="com.xzq.dubbocommon.bean.Log">
     <!--@mbg.generated-->
     <!--@Table log-->
     <id column="logid" jdbcType="INTEGER" property="logid" />
@@ -24,12 +24,12 @@
     delete from log
     where logid = #{logid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="logid" keyProperty="logid" parameterType="com.xzq.dubbodemo.Log" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="logid" keyProperty="logid" parameterType="com.xzq.dubbocommon.bean.Log" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into log (age, `name`)
     values (#{age,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="logid" keyProperty="logid" parameterType="com.xzq.dubbodemo.Log" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="logid" keyProperty="logid" parameterType="com.xzq.dubbocommon.bean.Log" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into log
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -49,7 +49,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xzq.dubbodemo.Log">
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzq.dubbocommon.bean.Log">
     <!--@mbg.generated-->
     update log
     <set>
@@ -62,7 +62,7 @@
     </set>
     where logid = #{logid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xzq.dubbodemo.Log">
+  <update id="updateByPrimaryKey" parameterType="com.xzq.dubbocommon.bean.Log">
     <!--@mbg.generated-->
     update log
     set age = #{age,jdbcType=INTEGER},
