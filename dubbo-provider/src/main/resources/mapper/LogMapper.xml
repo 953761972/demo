@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzq.dubbodemo.LogMapper">
+  <resultMap id="BaseResultMap" type="com.xzq.dubbodemo.Log">
+    <!--@mbg.generated-->
+    <!--@Table log-->
+    <id column="logid" jdbcType="INTEGER" property="logid" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    logid, age, `name`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from log
+    where logid = #{logid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from log
+    where logid = #{logid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="logid" keyProperty="logid" parameterType="com.xzq.dubbodemo.Log" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into log (age, `name`)
+    values (#{age,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="logid" keyProperty="logid" parameterType="com.xzq.dubbodemo.Log" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="age != null">
+        age,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzq.dubbodemo.Log">
+    <!--@mbg.generated-->
+    update log
+    <set>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where logid = #{logid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzq.dubbodemo.Log">
+    <!--@mbg.generated-->
+    update log
+    set age = #{age,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR}
+    where logid = #{logid,jdbcType=INTEGER}
+  </update>
+</mapper>
