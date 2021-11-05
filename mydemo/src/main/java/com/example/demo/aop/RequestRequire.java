@@ -1,6 +1,4 @@
-package com.example.demo.注解.注解代理;
-
-import org.springframework.stereotype.Component;
+package com.example.demo.aop;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

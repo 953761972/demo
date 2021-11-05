@@ -1,7 +1,8 @@
-package com.example.demo.注解.注解代理;
+package com.example.demo.aop;
 
+
+import com.example.demo.bean.TestObj;
 import org.aspectj.lang.ProceedingJoinPoint;
-
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -21,22 +22,23 @@ public class RequestRequireAspect {
     public RequestRequireAspect() {
     }
 
-    @Pointcut("@annotation(com.example.demo.注解.注解代理.RequestRequire)")
+    @Pointcut("@annotation(com.example.demo.aop.RequestRequire)")
     public void parameterInteceptor() {
     }
 
     @Around("parameterInteceptor()")
-    public Object around(ProceedingJoinPoint pjp) throws Throwable {
+    public void around(ProceedingJoinPoint pjp){
         System.out.println("进入方法前");
-        Object o=    pjp.proceed();
-        System.out.println("进入方法后");
-            return o;
+        try{
+            Object o=pjp.proceed();
+            System.out.println("进入方法后");
+        }catch (Throwable e){
 
-
+        }
     }
-
-    @Bean
-    public test test(){
-        return new test();
-    }
+//
+//    @Bean
+//    public TestObj TestObj(){
+//        return new TestObj();
+//    }
 }

@@ -1,10 +1,14 @@
-package com.example.demo.注解.注解代理;
+package com.example.demo.bean;
+
+import com.example.demo.aop.RequestRequire;
+import org.springframework.stereotype.Component;
 
 /**
  * @Author XZQ
  * @Date 2021/4/20 22:01
  **/
-public class test {
+@Component
+public class TestObj {
 
     private String test;
 

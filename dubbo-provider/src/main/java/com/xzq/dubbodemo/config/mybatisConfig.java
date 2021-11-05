@@ -1,5 +1,7 @@
 package com.xzq.dubbodemo.config;
 
+import com.alibaba.nacos.api.config.annotation.NacosConfigurationProperties;
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.annotations.Mapper;
@@ -19,19 +21,15 @@ import java.io.IOException;
  * @Date 2021/11/1 01:38
  **/
 @Configuration
-//@NacosConfigurationProperties(dataId = "local", autoRefreshed = true)
-@MapperScan(basePackages = "com.xzq.dubbodemo.dao",annotationClass = Mapper.class)
+@NacosConfigurationProperties(dataId = "local", autoRefreshed = true)
+@MapperScan(basePackages = "com.xzq.dubbodemo.dao")
 public class mybatisConfig {
-    //@NacosValue(value="${spring.datasource.driver-class-name}",autoRefreshed = true)
     @Value("${spring.datasource.driver-class-name}")
     String driverClassName;
-    //@NacosValue(value="${spring.datasource.url}",autoRefreshed = true)
     @Value("${spring.datasource.url}")
     String jdbcUrl;
-    //@NacosValue(value="${spring.datasource.username}",autoRefreshed = true)
     @Value("${spring.datasource.username}")
     String username;
-    //@NacosValue(value="${spring.datasource.password}",autoRefreshed = true)
     @Value("${spring.datasource.password}")
     String password;
 

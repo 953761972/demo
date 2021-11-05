@@ -19,7 +19,7 @@ public class LogController {
     private final RestTemplate restTemplate;
 
     @Autowired
-    public LogController(RestTemplate restTemplate) {this.restTemplate = restTemplate;}
+    private LogController(RestTemplate restTemplate) {this.restTemplate = restTemplate;}
 
 //    @RequestMapping("getLog")
 //    @ResponseBody

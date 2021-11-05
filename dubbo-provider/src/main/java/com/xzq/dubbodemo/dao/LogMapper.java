@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 **/
     
 @Mapper
-@Repository
 public interface LogMapper {
     int deleteByPrimaryKey(Integer logid);
 
