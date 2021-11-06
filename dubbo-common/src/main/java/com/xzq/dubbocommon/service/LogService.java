@@ -14,4 +14,5 @@ public interface LogService {
     static final String SERVICE_NAME = "dubbocommon.LogService";
 
     public Log gerLogbyId(int id);
+    public int Insert(Log log);
 }

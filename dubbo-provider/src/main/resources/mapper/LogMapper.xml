@@ -69,4 +69,11 @@
       `name` = #{name,jdbcType=VARCHAR}
     where logid = #{logid,jdbcType=INTEGER}
   </update>
+
+
+  <insert id="insertOne" keyColumn="logid" keyProperty="logid" parameterType="com.xzq.dubbocommon.bean.Log" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into log (logid,age, `name`)
+    values (#{logid,jdbcType=INTEGER},#{age,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+  </insert>
 </mapper>

@@ -5,6 +5,7 @@ import com.xzq.dubbocommon.service.LogService;
 import com.xzq.dubbodemo.dao.LogMapper;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -22,5 +23,12 @@ public class LogServiceImpl implements LogService {
     public Log gerLogbyId(int id){
         return logMapper.selectByPrimaryKey(id);
         //return new Log();
+    }
+
+    @Override
+    @DubboService()
+    @Transactional
+    public int Insert(Log log){
+        return logMapper.insertOne(log);
     }
 }
