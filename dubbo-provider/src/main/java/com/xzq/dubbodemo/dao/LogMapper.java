@@ -4,6 +4,8 @@ import com.xzq.dubbocommon.bean.Log;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @Author XZQ
  * @Date 2021/11/1 00:39
@@ -25,4 +27,6 @@ public interface LogMapper {
     int updateByPrimaryKey(Log record);
 
     int insertOne(Log record);
+
+    List<Log> selectByCount();
 }

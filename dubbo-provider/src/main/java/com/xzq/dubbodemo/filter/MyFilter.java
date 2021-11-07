@@ -15,21 +15,20 @@ import java.io.IOException;
 public class MyFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        System.out.println("init");
+        System.out.println("MyFilter-init");
         Filter.super.init(filterConfig);
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest re= (HttpServletRequest) servletRequest;
-        System.out.println(re.getPathInfo());
         System.out.println(re.getRequestURL());
         filterChain.doFilter(servletRequest,servletResponse);
     }
 
     @Override
     public void destroy() {
-        System.out.println("destroy");
+        System.out.println("MyFilter-destroy");
         Filter.super.destroy();
     }
 }

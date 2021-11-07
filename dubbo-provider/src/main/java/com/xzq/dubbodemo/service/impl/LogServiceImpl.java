@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Author XZQ
@@ -30,5 +31,10 @@ public class LogServiceImpl implements LogService {
     @Transactional
     public int Insert(Log log){
         return logMapper.insertOne(log);
+    }
+
+    @Override
+    public List<Log> selectByCount() {
+        return logMapper.selectByCount();
     }
 }

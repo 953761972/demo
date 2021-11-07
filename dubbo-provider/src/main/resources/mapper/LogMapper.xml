@@ -19,6 +19,9 @@
     from log
     where logid = #{logid,jdbcType=INTEGER}
   </select>
+  <select id="selectByCount" resultType="com.xzq.dubbocommon.bean.Log">
+    select * from log limit 1,100
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--@mbg.generated-->
     delete from log

@@ -2,6 +2,8 @@ package com.xzq.dubbocommon.service;
 
 import com.xzq.dubbocommon.bean.Log;
 
+import java.util.List;
+
 /**
  * @Author XZQ
  * @Date 2021/11/1 11:59
@@ -15,4 +17,5 @@ public interface LogService {
 
     public Log gerLogbyId(int id);
     public int Insert(Log log);
+    public List<Log> selectByCount( );
 }

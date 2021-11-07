@@ -24,7 +24,7 @@ public class Aopconfig {
         try{
             return point.proceed();
         }finally {
-            System.out.println("pre log");
+            System.out.println("after log");
         }
 
     }
