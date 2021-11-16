@@ -2,6 +2,7 @@ package com.xzq.dubbodemo.controller;
 
 import com.xzq.dubbodemo.exception.MyException;
 import com.xzq.dubbodemo.pojo.ErrorInfo;
+import org.apache.shiro.authz.AuthorizationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -38,5 +39,10 @@ public class ControllerAdviceController {
         error.setMessage("unknow error happends");
         error.setData("data");
         return new ResponseEntity<>(error, HttpStatus.OK);
+    }
+    @ResponseBody
+    @ExceptionHandler(value = AuthorizationException.class)
+    public String handleAuthorizationException() {
+        return "403";
     }
 }

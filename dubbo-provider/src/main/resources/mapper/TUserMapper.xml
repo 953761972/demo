@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzq.dubbodemo.dao.TUserMapper">
+  <resultMap id="BaseResultMap" type="com.xzq.dubbodemo.bean.TUser">
+    <!--@mbg.generated-->
+    <!--@Table T_USER-->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="PASSWD" jdbcType="VARCHAR" property="passwd" />
+    <result column="CREATE_TIME" jdbcType="DATE" property="createTime" />
+    <result column="STATUS" jdbcType="CHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ID, USERNAME, PASSWD, CREATE_TIME, `STATUS`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from T_USER
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from T_USER
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzq.dubbodemo.bean.TUser">
+    <!--@mbg.generated-->
+    insert into T_USER (ID, USERNAME, PASSWD, 
+      CREATE_TIME, `STATUS`)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=DATE}, #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzq.dubbodemo.bean.TUser">
+    <!--@mbg.generated-->
+    insert into T_USER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="passwd != null">
+        PASSWD,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="status != null">
+        `STATUS`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null">
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzq.dubbodemo.bean.TUser">
+    <!--@mbg.generated-->
+    update T_USER
+    <set>
+      <if test="username != null">
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null">
+        PASSWD = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="status != null">
+        `STATUS` = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzq.dubbodemo.bean.TUser">
+    <!--@mbg.generated-->
+    update T_USER
+    set USERNAME = #{username,jdbcType=VARCHAR},
+      PASSWD = #{passwd,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=DATE},
+      `STATUS` = #{status,jdbcType=CHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="select" resultMap="BaseResultMap">
+    select * from T_USER where USERNAME = #{username,jdbcType=VARCHAR} and
+    PASSWD = #{passwd,jdbcType=VARCHAR}
+  </select>
+</mapper>

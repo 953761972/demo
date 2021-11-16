@@ -27,14 +27,16 @@ public class RequestRequireAspect {
     }
 
     @Around("parameterInteceptor()")
-    public void around(ProceedingJoinPoint pjp){
+    public Object around(ProceedingJoinPoint pjp){
         System.out.println("进入方法前");
+        Object o = null;
         try{
-            Object o=pjp.proceed();
+            o=pjp.proceed();
             System.out.println("进入方法后");
         }catch (Throwable e){
 
         }
+        return o;
     }
 //
 //    @Bean

@@ -13,7 +13,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.servlet.Filter;
 import java.util.Arrays;
@@ -31,10 +33,10 @@ public class SpringMVCConfig implements WebMvcConfigurer {
 //    public Filter Filter(){
 //        return new MyFilter();
 //    }
-//添加拦截
-@Override
-public void addInterceptors(InterceptorRegistry registry) {
-    registry.addInterceptor(new MyInterceptor())//注册自定义拦截器
+    //添加拦截
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new MyInterceptor())//注册自定义拦截器
             .addPathPatterns("/**")//拦截的请求路径
             .excludePathPatterns("/error")//排除的请求路径
             .excludePathPatterns("/static/*");
@@ -57,4 +59,16 @@ public void addInterceptors(InterceptorRegistry registry) {
         return bean;
     }
 
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/templates/**").addResourceLocations("classpath:/templates/");
+    }
+
+    @Bean
+    public InternalResourceViewResolver get(){//2、配置视图解析器（缺一不可）
+        InternalResourceViewResolver v =new InternalResourceViewResolver();
+        v.setSuffix(".html");
+        v.setPrefix("/templates/");
+        return v;
+    }
 }

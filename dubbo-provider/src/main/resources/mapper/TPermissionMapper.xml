@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzq.dubbodemo.dao.TPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.xzq.dubbodemo.bean.TPermission">
+    <!--@mbg.generated-->
+    <!--@Table T_PERMISSION-->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="URL" jdbcType="VARCHAR" property="url" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ID, URL, `NAME`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from T_PERMISSION
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from T_PERMISSION
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzq.dubbodemo.bean.TPermission">
+    <!--@mbg.generated-->
+    insert into T_PERMISSION (ID, URL, `NAME`
+      )
+    values (#{id,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzq.dubbodemo.bean.TPermission">
+    <!--@mbg.generated-->
+    insert into T_PERMISSION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="url != null">
+        URL,
+      </if>
+      <if test="name != null">
+        `NAME`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzq.dubbodemo.bean.TPermission">
+    <!--@mbg.generated-->
+    update T_PERMISSION
+    <set>
+      <if test="url != null">
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `NAME` = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzq.dubbodemo.bean.TPermission">
+    <!--@mbg.generated-->
+    update T_PERMISSION
+    set URL = #{url,jdbcType=VARCHAR},
+      `NAME` = #{name,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findByUserName" resultMap="BaseResultMap">
+    select p.id,p.url,p.name from t_role r
+    left join t_user_role ur on(r.id = ur.rid)
+    left join t_user u on(u.id = ur.user_id)
+    left join t_role_permission rp on(rp.rid = r.id)
+    left join t_permission p on(p.id = rp.pid )
+    where u.username = #{userName}
+  </select>
+</mapper>

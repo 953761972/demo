@@ -109,11 +109,11 @@ public class logContorller {
 
         HSSFRow row=null;
         // 将第一行的三个单元格给合并
-//        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 2));
-//        row = sheet.createRow(0);
-//        HSSFCell beginCell = row.createCell(0);
-//        beginCell.setCellValue("通讯录");
-//        beginCell.setCellStyle(cellStyle);
+        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 2));
+        row = sheet.createRow(0);
+        HSSFCell beginCell = row.createCell(0);
+        beginCell.setCellValue("通讯录");
+        beginCell.setCellStyle(cellStyle);
 
         row = sheet.createRow(1);
         // 创建表头

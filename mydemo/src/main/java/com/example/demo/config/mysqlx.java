@@ -1,7 +1,7 @@
 package com.example.demo.config;
 
 import com.alibaba.fastjson.JSON;
-import com.example.demo.bean.log;
+import com.example.demo.bean.Log;
 import com.mysql.cj.xdevapi.Schema;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,7 +14,7 @@ public class mysqlx {
     //@Resource
     private Schema schema;
 
-    public log save(log formLog) {
+    public Log save(Log formLog) {
             schema
                     .createCollection("logs", true)
                     .add(JSON.toJSONString(formLog))
