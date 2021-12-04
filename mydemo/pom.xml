@@ -203,12 +203,18 @@
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
+        <!-- https://mvnrepository.com/artifact/com.itextpdf/itext7-core -->
         <dependency>
             <groupId>com.itextpdf</groupId>
-            <artifactId>itextpdf</artifactId>
+            <artifactId>itext7-core</artifactId>
+            <type>pom</type>
         </dependency>
 
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
 <!--        <dependency>-->
 <!--            <groupId>org.apache.logging.log4j</groupId>-->
