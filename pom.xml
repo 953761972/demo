@@ -23,6 +23,7 @@
         <module>dubbo-provider</module>
         <module>eureka-provider</module>
         <module>mydemo</module>
+        <module>jobs</module>
     </modules>
     <dependencies>
 
