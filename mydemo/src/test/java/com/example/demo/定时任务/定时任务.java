@@ -14,7 +14,7 @@ public class 定时任务 {
 
     public static void testTimer(){
         Timer timer = new Timer();
-        timer.schedule(new MyTimerTask(),5000);
+        timer.schedule(new MyTimerTask(),5000,5000);
     }
 }
 

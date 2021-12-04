@@ -117,5 +117,7 @@ public class nioServer implements  Runnable{
         wirteBuffer.put(bytes);
         wirteBuffer.flip();
         sc.write(wirteBuffer);
+        sc.shutdownOutput(); //要加这句jemeter客户端才会认为结束了
+        System.out.println("返回完成");
     }
 }
