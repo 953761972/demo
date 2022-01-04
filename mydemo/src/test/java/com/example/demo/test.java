@@ -3,6 +3,7 @@ package com.example.demo;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * @Author XZQ
@@ -10,6 +11,9 @@ import java.io.InputStream;
  **/
 public class test {
     public static void main(String[] args) throws IOException {
+            test2();
+    }
+    public void test1() throws IOException {
         Runtime r=Runtime.getRuntime();
 
         System.out.println(r.totalMemory()/1024/1024);
@@ -29,14 +33,26 @@ public class test {
         }
         System.out.println(errval);
 
-         in =r.exec("java /Volumes/FastSSD/GitHubDesktop/demo/src/test/java/com/example/demo/test").getInputStream();
-         errval="";
-         n=0;
+        in =r.exec("java /Volumes/FastSSD/GitHubDesktop/demo/src/test/java/com/example/demo/test").getInputStream();
+        errval="";
+        n=0;
         while ((n = bufIn.read(shuzu, 0, shuzu.length)) != -1) {
             String s = null;
             s = new String(shuzu, 0, n);
             errval+=s;
         }
         System.out.println(errval);
+    }
+
+    public  static void test2(){
+        List<String> list =null;
+        if(list !=null && list.size()>0){
+            list.forEach(a->{
+                System.out.println(a);
+            });
+        }
+for(String s:list){
+    System.out.println(s);
+}
     }
 }

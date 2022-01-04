@@ -4,10 +4,7 @@ import com.example.demo.utils.SFTPUtils;
 import com.jcraft.jsch.ChannelSftp;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +18,7 @@ import java.io.InputStream;
 @Controller
 public class SFTPController {
 
-    @RequestMapping("/getFile")
+    @GetMapping("/getFile")
     public void getFile(@RequestParam("filename") String filename, HttpServletResponse response) throws Exception {
 
         ChannelSftp sftp = SFTPUtils.getSFTP(-1, "xzq", "xzq520", "localhost");
@@ -31,7 +28,7 @@ public class SFTPController {
 
     }
 
-    @RequestMapping("/UploadFile")
+    @PostMapping("/UploadFile")
     @ResponseBody
     public String UploadFile(@RequestParam("file") MultipartFile file) {
         try{

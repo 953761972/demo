@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,13 +34,13 @@ public class LogController {
     EntityManager entityManager;
 
     @ResponseBody
-    @RequestMapping("/getlog/{logid}")
+    @GetMapping("/getlog/{logid}")
     public String getLog(@PathVariable("logid") int logid){
        return logRepository.getOne(logid).toString();
     }
 
     @ResponseBody
-    @RequestMapping("/getlogByPage/{pagenum}/{num}")
+    @GetMapping("/getlogByPage/{pagenum}/{num}")
     public String getLogPage(@PathVariable("pagenum") int pagenum,@PathVariable("num") int num){
         Page<Log> logList= logRepository.findAll(PageRequest.of(pagenum, num, Sort.by("id").descending()));
         int totalpages=logList.getTotalPages();
@@ -49,7 +50,7 @@ public class LogController {
     }
 
     @ResponseBody
-    @RequestMapping("/getlogByName/{name}")
+    @GetMapping("/getlogByName/{name}")
     public String getLogByName(@PathVariable("name") String name){
         List<Log> logList= logRepository.findByNameLike(name+"%",PageRequest.of(1, 20, Sort.by("id").descending()));
         System.out.println("size:"+logList.size());
@@ -57,7 +58,7 @@ public class LogController {
     }
 
     @ResponseBody
-    @RequestMapping("/getlogByQuery/{name}")
+    @GetMapping("/getlogByQuery/{name}")
     public String getLogByQuery(@PathVariable("name") String name){
         List<Log> logList= logRepository.findByQuery(name,PageRequest.of(1, 20, Sort.by("id").descending()));
         System.out.println("size:"+logList.size());
@@ -65,7 +66,7 @@ public class LogController {
     }
 
     @ResponseBody
-    @RequestMapping("/getlogBySQL/{name}")
+    @GetMapping("/getlogBySQL/{name}")
     public String getLogBySQL(@PathVariable("name") String name){
         String sql="select logid,age,name from log where name like '"+name+"%' ";
         Query query=entityManager.createNativeQuery(sql);

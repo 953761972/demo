@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.bean.TestObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -15,12 +16,12 @@ public class indexController {
     @Autowired
     TestObj testObj;
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String index(){
         return "index";
     }
 
-    @RequestMapping("/testaop")
+    @GetMapping("/testaop")
     @ResponseBody
     public String testaop(){
         testObj.setTest("ss");
