@@ -40,7 +40,7 @@ public class nioServer implements  Runnable{
     public void run() {
         while(!stop){
             try {
-                selector.select(1000);
+                selector.select();
                 Set<SelectionKey> selectdkeys = selector.selectedKeys();
                 Iterator<SelectionKey> it=selectdkeys.iterator();
                 SelectionKey key=null;
@@ -49,6 +49,21 @@ public class nioServer implements  Runnable{
                     key=it.next();
                     it.remove();
                     try{
+                        if(key.isAcceptable()){
+                            System.out.println("isAcceptable");
+                        }
+                        if(key.isReadable()){
+                            System.out.println("isReadable");
+                        }
+                        if(key.isValid()){
+                            //System.out.println("isValid");
+                        }
+                        if(key.isConnectable()){
+                            System.out.println("isConnectable");
+                        }
+                        if(key.isWritable()){
+                            System.out.println("isWritable");
+                        }
                         handInput(key);
                     }catch (Exception e){
                         e.printStackTrace();
@@ -99,6 +114,7 @@ public class nioServer implements  Runnable{
                     }else {
                         responStr="bad request";
                     }
+                    System.out.println("response:"+responStr);
                     doWrite(sc,responStr);
                 }else if(readBytes<0){
                     key.cancel();
