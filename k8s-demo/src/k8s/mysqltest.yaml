@@ -1,0 +1,87 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations: {}
+  labels:
+    k8s.kuboard.cn/layer: db
+    k8s.kuboard.cn/name: mysqltest
+  name: mysqltest
+  namespace: default
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s.kuboard.cn/layer: db
+      k8s.kuboard.cn/name: mysqltest
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        k8s.kuboard.cn/layer: db
+        k8s.kuboard.cn/name: mysqltest
+    spec:
+      containers:
+        - env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+          image: 'mysql:8.0.20'
+          imagePullPolicy: IfNotPresent
+          name: mysql
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: volume-ikm4j
+            - mountPath: /etc/mysql
+              name: volume-6m6by
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - hostPath:
+            path: /Volumes/FastSSD/Library/K8s/dataVolumes/mysql/data
+            type: Directory
+          name: volume-ikm4j
+        - hostPath:
+            path: /Volumes/FastSSD/Library/K8s/dataVolumes/mysql/conf
+            type: Directory
+          name: volume-6m6by
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations: {}
+  labels:
+    k8s.kuboard.cn/layer: db
+    k8s.kuboard.cn/name: mysqltest
+  name: mysqltest
+  namespace: default
+spec:
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+    - name: 7xiawk
+      nodePort: 30001
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+  selector:
+    k8s.kuboard.cn/layer: db
+    k8s.kuboard.cn/name: mysqltest
+  sessionAffinity: None
+  type: NodePort
+
