@@ -26,6 +26,7 @@
         <module>mydemo</module>
         <module>jobs</module>
         <module>activiti</module>
+        <module>k8s-demo</module>
     </modules>
     <dependencies>
 
@@ -456,7 +457,11 @@
                 <version>6.0.53</version>
                 <scope>provided</scope>
             </dependency>
-
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>1.4.2.Final</version>
+            </dependency>
 <!--            &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core &ndash;&gt;-->
 <!--            <dependency>-->
 <!--                <groupId>org.apache.logging.log4j</groupId>-->

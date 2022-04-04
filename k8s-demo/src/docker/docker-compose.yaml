@@ -1,0 +1,11 @@
+version: '2'
+services:
+  my-app:
+    image: myapp
+    environment:
+      - JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=dev,swagger
+      - SPRING_DATASOURCE_URL=jdbc:mysql://192.168.50.208:30001/test?useUnicode=true&characterEncoding=utf8&useSSL=false
+      - JHIPSTER_SLEEP=3 # gives time for the database to boot before the application
+    ports:
+      - 5566:5566
