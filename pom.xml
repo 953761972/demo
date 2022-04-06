@@ -232,19 +232,19 @@
             <dependency>
                 <groupId>org.elasticsearch.client</groupId>
                 <artifactId>elasticsearch-rest-high-level-client</artifactId>
-                <version>7.14.1</version>
+                <version>7.3.0</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch -->
             <dependency>
                 <groupId>org.elasticsearch</groupId>
                 <artifactId>elasticsearch</artifactId>
-                <version>7.14.1</version>
+                <version>7.3.0</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-client -->
             <dependency>
                 <groupId>org.elasticsearch.client</groupId>
                 <artifactId>elasticsearch-rest-client</artifactId>
-                <version>7.14.1</version>
+                <version>7.3.0</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.rocketmq/rocketmq-client -->
             <dependency>
@@ -315,19 +315,19 @@
             <dependency>
                 <groupId>org.apache.lucene</groupId>
                 <artifactId>lucene-core</artifactId>
-                <version>8.10.1</version>
+                <version>8.1.0</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-queryparser -->
             <dependency>
                 <groupId>org.apache.lucene</groupId>
                 <artifactId>lucene-queryparser</artifactId>
-                <version>8.10.1</version>
+                <version>8.1.0</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common -->
             <dependency>
                 <groupId>org.apache.lucene</groupId>
                 <artifactId>lucene-analyzers-common</artifactId>
-                <version>8.10.1</version>
+                <version>8.1.0</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
             <dependency>
@@ -486,7 +486,18 @@
                 <version>22.3</version>
                 <type>pom</type>
             </dependency>
-<!--            <dependency>-->
+            <!-- https://mvnrepository.com/artifact/com.janeluo/ikanalyzer -->
+            <dependency>
+                <groupId>com.janeluo</groupId>
+                <artifactId>ikanalyzer</artifactId>
+                <version>2012_u6</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.lucene</groupId>
+                <artifactId>lucene-analyzers-smartcn</artifactId>
+                <version>8.4.1</version>
+            </dependency>
+            <!--            <dependency>-->
 <!--                <groupId>com.aspose</groupId>-->
 <!--                <artifactId>aspose-words</artifactId>-->
 <!--                <version>22.3</version>-->

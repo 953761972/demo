@@ -17,6 +17,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.IOUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -30,20 +31,35 @@ import static org.junit.Assert.assertEquals;
  **/
 public class luceneTest {
 
+    private String filePath="/Volumes/FastSSD/files/lucene/luceneTest";
     public static void main(String[] args) throws IOException, ParseException {
+        luceneTest lt=new luceneTest();
+        lt.createIndex();
+        lt.search();
+    }
+    public void createIndex() throws IOException {
         Analyzer analyzer = new StandardAnalyzer();
-
-        Path indexPath = Files.createTempDirectory(Paths.get("/Volumes/FastSSD/files/"),"tempIndex");
-        System.out.println(indexPath.toAbsolutePath());
-        Directory directory = FSDirectory.open(indexPath);
+        String text = "This is the text to be indexed.";
+        File f=new File(filePath);
+        f.mkdirs();
+        System.out.println(f.getAbsolutePath());
+        Directory directory = FSDirectory.open(f.toPath());
         IndexWriterConfig config = new IndexWriterConfig(analyzer);
         IndexWriter iwriter = new IndexWriter(directory, config);
         Document doc = new Document();
-        String text = "This is the text to be indexed.";
-        doc.add(new Field("fieldname", text, TextField.TYPE_STORED));
+        doc.add(new TextField("fieldname", text, Field.Store.YES));
+        doc.add(new TextField("fieldname1", text, Field.Store.YES));
+        doc.add(new TextField("fieldname2", text, Field.Store.YES));
         iwriter.addDocument(doc);
+        iwriter.commit();
         iwriter.close();
-
+    }
+    public void search() throws IOException, ParseException {
+        Analyzer analyzer = new StandardAnalyzer();
+        File f=new File(filePath);
+        f.mkdirs();
+        System.out.println(f.getAbsolutePath());
+        Directory directory = FSDirectory.open(f.toPath());
         // Now search the index:
         DirectoryReader ireader = DirectoryReader.open(directory);
         IndexSearcher isearcher = new IndexSearcher(ireader);
@@ -51,16 +67,14 @@ public class luceneTest {
         QueryParser parser = new QueryParser("fieldname", analyzer);
         Query query = parser.parse("text");
         ScoreDoc[] hits = isearcher.search(query, 10).scoreDocs;
-        assertEquals(1, hits.length);
-        System.out.println(hits.length);
+        System.out.println("hits:"+hits.length);
         // Iterate through the results:
         for (int i = 0; i < hits.length; i++) {
             Document hitDoc = isearcher.doc(hits[i].doc);
-            assertEquals("This is the text to be indexed.", hitDoc.get("fieldname"));
             System.out.println(hitDoc.get("fieldname"));
         }
         ireader.close();
         directory.close();
-        //IOUtils.rm(indexPath);
     }
+
 }
